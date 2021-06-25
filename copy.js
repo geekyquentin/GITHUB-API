@@ -1,6 +1,7 @@
 const yargs = require('yargs');
 const fetch = require("node-fetch");
 var un = null;
+var rep = null;
 
 const argv = yargs
     .command('username', 'Username of Github handle', {
@@ -15,7 +16,7 @@ const argv = yargs
         alias: 'n',
         type: "string",
     })
-    .option("avatar_url", {
+    .option("avatar", {
         description: "URL of Users' Avatar",
         alias: 'a',
         type: "string",
@@ -46,9 +47,9 @@ const argv = yargs
         type: "number"
     })
     .option("repository", {
-        description: "Repository details",
+        description: "Name of the repository",
         alias: "repo",
-        type: 'string'
+        type: "string"
     })
     .help()
     .alias('help', 'h')
@@ -57,6 +58,9 @@ const argv = yargs
 if (argv._.includes('username')) {
     un = argv.username;
 }
+
+console.log(un);
+
 function run(value) {
     var response = null;
 
@@ -96,7 +100,7 @@ if (argv.name == '') {
     run("name");
 }
 
-if (argv.avatar_url == '') {
+if (argv.avatar == '') {
     run("avatar");
 }
 
@@ -120,6 +124,45 @@ if (argv.following == '') {
     run("following");
 }
 
-// if (argv.directory != '') {
-//     console.log(argv.directory);
-// }
+if (argv.repository != '') {
+    rep = argv.repository;
+    const repargv = yargs
+        .command('repository', 'Name of the repository', {
+            repository: {
+                description: 'Name of the repository',
+                alias: 'r',
+                type: 'string',
+            },
+        })
+        .option("status", {
+            description: "Private / Public",
+            type: "string",
+        })
+        .option("forks", {
+            description: "Forks count",
+            type: "number",
+        })
+        .option("starred", {
+            description: "Stargazers count",
+            type: 'number'
+        })
+        .option("watchers", {
+            description: "Watchers count",
+            type: 'number',
+        })
+        .option("topics", {
+            description: "Topics of the repository",
+            type: 'string'
+        })
+        .option("license", {
+            description: "License of the repository",
+            type: 'string'
+        })
+        .help()
+        .alias('repo-help', 'rh')
+        .argv;
+
+    if (repargv._.includes('repository')) {
+        console.log(repargv.repository);
+    }
+}
