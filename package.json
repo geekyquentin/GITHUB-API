@@ -1,0 +1,17 @@
+{
+	"name": "github-api_2",
+	"version": "1.0.0",
+	"description": "",
+	"main": "copy.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"keywords": [],
+	"author": "Yashwant Krishna",
+	"license": "ISC",
+	"dependencies": {
+		"node-fetch": "^2.6.1",
+		"xmlhttprequest": "^1.8.0",
+		"yargs": "^17.0.1"
+	}
+}
