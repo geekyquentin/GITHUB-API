@@ -12,7 +12,7 @@
 ## Working:
 To get your details, type:
 ```
-node copy.js username -u <username> --details
+node copy.js username -u <username> --<details>
 ```
 
 To know what all details you can get, type:
